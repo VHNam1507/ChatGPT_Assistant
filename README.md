@@ -1,19 +1,24 @@
 # **ChatGPT Assistant**
 
-    A simple Python program enables you to talk to GPT. Just enter your API key and chat with it.
+## **A simple Python program enables you to talk to GPT. Just enter your API key and chat with it.**
 
-### Install dependencies using pip: 
+---
+
+### Install dependencies using pip
+
     pip install openai
     pip install speechrecognition 
     pip install pyttsx3 
 
 ### How to use this dumb_ass Python program
+
 1. Download and run the file called ChatGPT_Assistant.py
 2. Enter your API key
-3. Talk shjet with GPT    
+3. Talk shjet with GPT
 
 ### How to get your API key?
-To get an API key for OpenAI, you will need to create an account on the OpenAI website (https://openai.com/) and follow these steps:
+
+To get an API key for OpenAI, you will need to create an account on the OpenAI website (<https://openai.com/>) and follow these steps:
 
 1. Log in to your OpenAI account.
 2. Go to the API keys page.

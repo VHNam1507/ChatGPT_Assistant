@@ -18,7 +18,7 @@ def gpt_listen():
         message = recognizer.recognize_google(audio)
     except sr.UnknownValueError:
         message = ""
-    return message.lower()
+    return message.lower() # type: ignore
 
 def generate_text(prompt):
     response = openai.Completion.create(
@@ -29,11 +29,12 @@ def generate_text(prompt):
         stop=None,
         temperature=0.5,
     )
-    message = response.choices[0].text.strip()
+    message = response.choices[0].text.strip() # type: ignore
     return message
 
 def chat():
     print("Welcome to ChatGPT Assistant! Speak or type below:")
+    gpt_speak("Welcome to ChatGPT Assistant! Speak or type below:")
     while True:
         print("You: ", end="")
         user_input = gpt_listen()
