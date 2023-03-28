@@ -22,7 +22,7 @@ def gpt_listen():
 
 def generate_text(prompt):
     response = openai.Completion.create(
-        engine="text-davinci-002",
+        engine="text-davinci-003",
         prompt=prompt,
         max_tokens=1024,
         n=1,
