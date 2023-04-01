@@ -1,2 +1,39 @@
 API.txt
 tempCodeRunnerFile.py
+# Compiled python files
+*.pyc
+
+# Virtual environment
+venv/
+env/
+env_bak/
+ENV/
+ENV_bak/
+.venv/
+.pyenv/
+.conda/
+
+# Logs
+*.log
+logs/
+
+# Caches
+__pycache__/
+.cache/
+pytest_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE files
+.vscode/
+.idea/
+*.pydevproject
+*.project
+*.cproject
+*.settings/
+Thumbs.db
+.DS_Store
