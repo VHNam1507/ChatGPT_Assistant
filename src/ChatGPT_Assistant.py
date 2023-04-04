@@ -1,5 +1,6 @@
 import openai
 import pyttsx3
+import Img2Text
 import speech_recognition as sr
 
 def gpt_speak(content):
@@ -46,9 +47,8 @@ def chat():
         response = generate_text(prompt)
         print("ChatGPT Assistant:", response)
         gpt_speak(response)
-
-
-if __name__ == '__main__':
+        
+def auth():
     API_input = input("Enter your OpenAI API key: ")
     while True:
         if API_input.startswith("sk-"):
@@ -57,5 +57,4 @@ if __name__ == '__main__':
         else:
             print("Invalid API key. Please enter a valid key.")
             API_input = input("Enter your OpenAI API key: ")
-    chat()
     
