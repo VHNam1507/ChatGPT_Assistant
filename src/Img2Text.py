@@ -34,7 +34,7 @@ def image2text():
         tess_path = f_path.read().strip()
     tess.pytesseract.tesseract_cmd = tess_path
 
-    # Prompt user for input file and check validity
+    # check valid user input
     while True:
         input_file = input("Enter path to input file: ")
         if os.path.exists(input_file) and is_valid_image(input_file):
@@ -42,7 +42,7 @@ def image2text():
         else:
             print("Invalid file path or format. Please try again.")
     
-    # Prompt user for output file and check validity
+    #check valid user output
     while True:
         output_file = input("Enter path to output file: ")
         if os.path.exists(os.path.dirname(output_file)):
@@ -50,12 +50,12 @@ def image2text():
         else:
             print("Invalid directory path. Please try again.")
     
-    # Process image using OpenCV and save temporary file
+    # Process image using OpenCV and save temp file
     temp_file = 'temp.jpg'
     edges = process_image(input_file)
     cv2.imwrite(temp_file, edges)
     
-    # Perform OCR on temporary file and remove temporary files
+    # Perform OCR on a temp file then remove it
     try:
         img = Image.open(temp_file)
         text = tess.image_to_string(img)
