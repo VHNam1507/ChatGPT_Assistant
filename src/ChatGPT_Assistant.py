@@ -25,22 +25,21 @@ class ChatGPTAssistant:
             message = ""
         return message.lower() # type: ignore
 
-    def generate_text(self, prompt):
+    def ChatGPT_conversation(self, conversation):
         openai.api_key = self.api_key
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.5,
+        response = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=conversation
         )
-        message = response.choices[0].text.strip() # type: ignore
-        return message
+        conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content}) # type: ignore
+        return conversation
 
     def chat(self):
+        openai.api_key = self.api_key
         print("Welcome to ChatGPT Assistant! Speak or type below:")
         self.speak("Welcome to ChatGPT Assistant! Speak or type below:")
+        conversation = []
+        conversation.append({'role': 'system', 'content': 'How may I help you?'})
         while True:
             print("You: ", end="")
             user_input = self.listen()
@@ -49,11 +48,12 @@ class ChatGPTAssistant:
                 print("ChatGPT Assistant: Goodbye!")
                 self.speak("Goodbye!")
                 break
-            prompt = f"You: {user_input}\nChatGPT Assistant:"
-            response = self.generate_text(prompt)
-            print("ChatGPT Assistant:", response)
-            self.speak(response)
-
+            conversation.append({'role': 'user', 'content': user_input})
+            conversation = self.ChatGPT_conversation(conversation)
+            print('ChatGPT Assistant:', conversation[-1]['content'])
+            self.speak(conversation[-1]['content'])
+            
+        
     def check_API_key(self):
         #Check API key is valid
         if len(self.api_key) != 64 and not self.api_key.startswith("sk-") and not self.api_key[3:].isalnum():
@@ -82,6 +82,8 @@ class ChatGPTAssistant:
         if self.check_API_key() == True:
             self.speak("API key verified.")
         else:
+            self.speak("Invalid API key.")
             new_API_input = input("Enter a valid API key please: ")
             self.api_key = new_API_input
             self.auth()
+

@@ -53,12 +53,8 @@ class ChatGUI:
             
     def generate_text(self, prompt):
         response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.5,
+            model='gpt-3.5-turbo',
+            messages=prompt
         )
         message = response.choices[0].text.strip() # type: ignore
         return message
